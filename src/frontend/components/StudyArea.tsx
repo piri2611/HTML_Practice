@@ -7,14 +7,14 @@ import { HTMLTagsReference } from './HTMLTagsReference';
 interface StudyAreaProps {
   onBack: () => void;
   onSelectQuestion: (questionId: number) => void;
+  onViewReferences: () => void;
+  onViewTags: () => void;
 }
 
-export const StudyArea = ({ onBack, onSelectQuestion }: StudyAreaProps) => {
+export const StudyArea = ({ onBack, onSelectQuestion, onViewReferences, onViewTags }: StudyAreaProps) => {
   const { user, logout } = useAuth();
   const [questions, setQuestions] = useState<QuestionData[]>([]);
-  const [darkMode, setDarkMode] = useState(false);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
-  const [showTagsReference, setShowTagsReference] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState<number | null>(() => {
     // Restore selected task from sessionStorage
     const saved = sessionStorage.getItem('studyAreaSelectedTaskId');
@@ -1069,34 +1069,30 @@ worker.onmessage = function(event) {
   return (
     <div className="study-container">
       <header className="study-header">
-        <div className="header-left">
-          <div className="header-title-row">
-            <span className="header-icon">📚</span>
-            <h1>HTML</h1>
+        <nav className="w3schools-nav">
+          <div className="nav-logo">
+            <span className="logo-text">AUSDAV</span>
           </div>
-          <p className="subtitle">Step-by-step lessons for complete beginners</p>
-        </div>
-        <div className="header-right">
-          <button 
-            className="header-btn"
-            onClick={() => setShowTagsReference(true)}
-            title="HTML Tags Reference"
-          >
-            📖 Tags
-          </button>
-          <button 
-            className="dark-mode-btn"
-            onClick={() => setDarkMode(!darkMode)}
-            title={darkMode ? 'Light Mode' : 'Dark Mode'}
-          >
-            {darkMode ? '☀️' : '🌙'}
-          </button>
-          <span className="user-info">Welcome, {user?.name}!</span>
-          <button className="logout-btn" onClick={logout}>Logout</button>
-        </div>
+          <div className="nav-menu">
+            <button className="nav-item active">Tutorials</button>
+            <button className="nav-item" onClick={onViewReferences}>References</button>
+            <button className="nav-item" onClick={onViewTags}>Tags</button>
+          </div>
+          <div className="nav-right">
+            <span className="user-info">Welcome, {user?.name}!</span>
+            <button className="logout-btn" onClick={logout}>Logout</button>
+          </div>
+        </nav>
       </header>
 
-      <div className={`study-content ${darkMode ? 'dark-mode' : ''}`}>
+      <div className="page-header">
+        <div className="page-title">
+          <h1>HTML Tutorial</h1>
+          <p>Learn HTML from the basics</p>
+        </div>
+      </div>
+
+      <div className="study-content">
         <div className="study-layout">
           <aside className="study-sidebar" aria-label="HTML topics">
             <div className="sidebar-title">HTML Topics</div>
@@ -1491,10 +1487,7 @@ worker.onmessage = function(event) {
           </main>
         </div>
       </div>
-
-      {showTagsReference && (
-        <HTMLTagsReference onClose={() => setShowTagsReference(false)} />
-      )}
     </div>
+
   );
 };

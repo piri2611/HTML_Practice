@@ -8,12 +8,14 @@ import { Auth } from './frontend/components/Auth';
 import { Dashboard } from './frontend/components/Dashboard';
 import { Quiz } from './frontend/components/Quiz';
 import { StudyArea } from './frontend/components/StudyArea';
+import { References } from './frontend/components/References';
+import { TagsPage } from './frontend/components/TagsPage';
 import './styles.css';
 
 const AppContent = () => {
   const { user, loading } = useAuth();
   const [selectedQuestionId, setSelectedQuestionId] = useState<number | null>(null);
-  const [activeView, setActiveView] = useState<'dashboard' | 'quiz' | 'study'>('study');
+  const [activeView, setActiveView] = useState<'dashboard' | 'quiz' | 'study' | 'references' | 'tags'>('study');
 
   if (loading) {
     return (
@@ -38,13 +40,15 @@ const AppContent = () => {
             setActiveView('study');
           }}
         />
-      ) : activeView === 'study' ? (
-        <StudyArea 
+      ) : activeView === 'references' ? (
+        <References 
           onBack={() => setActiveView('study')}
-          onSelectQuestion={(id) => {
-            setSelectedQuestionId(id);
-            setActiveView('quiz');
-          }}
+          onViewTags={() => setActiveView('tags')}
+        />
+      ) : activeView === 'tags' ? (
+        <TagsPage
+          onBack={() => setActiveView('study')}
+          onViewReferences={() => setActiveView('references')}
         />
       ) : (
         <StudyArea 
@@ -53,6 +57,8 @@ const AppContent = () => {
             setSelectedQuestionId(id);
             setActiveView('quiz');
           }}
+          onViewReferences={() => setActiveView('references')}
+          onViewTags={() => setActiveView('tags')}
         />
       )}
     </div>
