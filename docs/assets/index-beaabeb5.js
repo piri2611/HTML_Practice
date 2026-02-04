@@ -21777,6 +21777,7 @@ worker.onmessage = function(event) {
               setActiveLessonId(lesson.id);
               setSelectedTaskId(null);
               setShowingHtmlQuiz(false);
+              setIsSidebarOpen(false);
             },
             children: lesson.title
           }
@@ -21790,6 +21791,7 @@ worker.onmessage = function(event) {
               onClick: () => {
                 setSelectedTaskId(question.id);
                 setShowingHtmlQuiz(false);
+                setIsSidebarOpen(false);
               },
               children: question.title
             }
@@ -21804,6 +21806,7 @@ worker.onmessage = function(event) {
               setShowingHtmlQuiz(true);
               setSelectedTaskId(null);
               setActiveLessonId("");
+              setIsSidebarOpen(false);
             },
             children: "HTML Quiz (30 Questions)"
           }

@@ -1133,6 +1133,7 @@ worker.onmessage = function(event) {
                       setActiveLessonId(lesson.id);
                       setSelectedTaskId(null);
                       setShowingHtmlQuiz(false);
+                      setIsSidebarOpen(false);
                     }}
                   >
                     {lesson.title}
@@ -1153,6 +1154,7 @@ worker.onmessage = function(event) {
                           onClick={() => {
                             setSelectedTaskId(question.id);
                             setShowingHtmlQuiz(false);
+                            setIsSidebarOpen(false);
                           }}
                         >
                           {question.title}
@@ -1177,6 +1179,7 @@ worker.onmessage = function(event) {
                     setShowingHtmlQuiz(true);
                     setSelectedTaskId(null);
                     setActiveLessonId('');
+                    setIsSidebarOpen(false);
                   }}
                 >
                   HTML Quiz (30 Questions)
