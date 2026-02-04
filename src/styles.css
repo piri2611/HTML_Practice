@@ -3233,56 +3233,56 @@ body {
 
 @media (max-width: 768px) {
   .w3schools-nav {
-    padding: 0 10px;
-    gap: 10px;
+    padding: 0 8px;
+    gap: 6px;
     height: 56px;
   }
 
   .nav-left {
-    gap: 10px;
+    gap: 6px;
     flex: 1;
     min-width: 0;
   }
 
   .nav-brand {
-    font-size: 20px;
-    letter-spacing: 1.2px;
+    font-size: 17px;
+    letter-spacing: 1px;
     flex-shrink: 1;
     min-width: 0;
   }
 
   .brand-logo {
-    font-size: 20px;
-    letter-spacing: 1.2px;
+    font-size: 17px;
+    letter-spacing: 1px;
   }
 
   .brand-icon {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .brand-text {
-    font-size: 22px;
-    letter-spacing: 1.2px;
+    font-size: 18px;
+    letter-spacing: 1px;
   }
 
   .logo-text {
-    font-size: 20px;
-    letter-spacing: 1.2px;
+    font-size: 17px;
+    letter-spacing: 1px;
   }
 
   .logo-subtext {
-    font-size: 9px;
+    font-size: 8px;
   }
 
   .nav-menu {
     display: flex;
-    gap: 4px;
-    font-size: 11px;
+    gap: 2px;
+    font-size: 10px;
   }
 
   .nav-item {
-    padding: 6px 10px;
-    font-size: 11px;
+    padding: 4px 7px;
+    font-size: 10px;
     height: auto;
     border-bottom: 2px solid transparent;
   }
@@ -3292,8 +3292,8 @@ body {
   }
 
   .nav-right {
-    gap: 10px;
-    font-size: 12px;
+    gap: 8px;
+    font-size: 11px;
     flex-shrink: 0;
   }
 
@@ -3302,16 +3302,16 @@ body {
   }
 
   .user-info {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .user-name {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .logout-btn {
-    padding: 7px 14px;
-    font-size: 12px;
+    padding: 6px 10px;
+    font-size: 11px;
     white-space: nowrap;
     height: auto;
   }
@@ -3440,35 +3440,35 @@ body {
 
 @media (max-width: 480px) {
   .w3schools-nav {
-    padding: 0 8px;
+    padding: 0 6px;
     height: 52px;
-    gap: 8px;
+    gap: 4px;
   }
 
   .nav-left {
-    gap: 8px;
+    gap: 4px;
   }
 
   .nav-menu {
-    gap: 2px;
+    gap: 1px;
   }
 
   .nav-item {
-    padding: 4px 8px;
-    font-size: 10px;
+    padding: 4px 6px;
+    font-size: 9px;
   }
 
   .nav-brand {
-    font-size: 18px;
+    font-size: 15px;
   }
 
   .brand-logo {
-    font-size: 18px;
+    font-size: 15px;
   }
 
   .logout-btn {
-    padding: 6px 12px;
-    font-size: 11px;
+    padding: 5px 9px;
+    font-size: 10px;
   }
 
   .mobile-menu-toggle {
@@ -3476,8 +3476,8 @@ body {
   }
 
   .mobile-menu-toggle svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
   }
 
   .study-header {
