@@ -5,9 +5,19 @@ export default defineConfig({
   base: '/HTML_Practice/',
   plugins: [react()],
   server: {
-    port: 3000
+    port: 3000,
+    host: 'localhost'
   },
   build: {
-    sourcemap: false
+    outDir: 'dist',
+    sourcemap: false,
+    minify: false,
+    rollupOptions: {
+      output: {
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash][extname]'
+      }
+    }
   }
 })
