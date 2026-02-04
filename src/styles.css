@@ -44,98 +44,100 @@ body {
 .auth-container {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #0a0e27;
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      rgba(0, 217, 255, 0.03) 0px,
-      transparent 1px,
-      transparent 2px,
-      rgba(0, 217, 255, 0.03) 3px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 0, 110, 0.02) 0px,
-      transparent 2px,
-      transparent 4px,
-      rgba(255, 0, 110, 0.02) 6px
-    ),
-    radial-gradient(
-      circle at 20% 50%,
-      rgba(0, 217, 255, 0.05) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 80%,
-      rgba(255, 0, 110, 0.05) 0%,
-      transparent 50%
-    );
+  justify-content: flex-start;
+  align-items: stretch;
+  background: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
   position: relative;
   overflow: hidden;
 }
 
-.auth-card {
-  background: #0f1629;
-  padding: 80px 50px;
-  border-radius: 0;
-  border: 2px solid #00d9ff;
-  box-shadow: 
-    0 0 20px rgba(0, 217, 255, 0.3), 
-    inset 0 0 20px rgba(0, 217, 255, 0.1),
-    inset -40px -40px 80px rgba(0, 217, 255, 0.02),
-    inset 40px 40px 80px rgba(255, 0, 110, 0.02);
+.auth-visual {
+  flex: 1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.auth-visual::before {
+  content: '';
+  position: absolute;
   width: 100%;
-  max-width: 350px;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.auth-visual-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+.auth-visual-icon {
+  font-size: 120px;
+  margin-bottom: 30px;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.auth-visual-text {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.auth-visual-subtext {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  max-width: 300px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-card {
+  background: #ffffff;
+  padding: 60px 50px;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+  max-width: 100%;
+  flex: 1;
   position: relative;
   z-index: 10;
-}
-
-.auth-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    #00d9ff 20%, 
-    #ff006e 50%, 
-    #00d9ff 80%, 
-    transparent);
-  opacity: 0.5;
-}
-
-.auth-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    #ff006e 20%, 
-    #00d9ff 50%, 
-    #ff006e 80%, 
-    transparent);
-  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .auth-card h1 {
   text-align: center;
-  color: #00d9ff;
+  color: #1d1d1d;
   margin-bottom: 10px;
   font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.5px;
-  text-shadow: 
-    0 0 10px rgba(0, 217, 255, 0.5),
-    0 0 20px rgba(0, 217, 255, 0.3),
-    2px 2px 0px rgba(255, 0, 110, 0.2);
 }
 
 .auth-header {
@@ -147,15 +149,11 @@ body {
   margin-bottom: 12px;
   font-size: 32px;
   font-weight: 700;
-  color: #00d9ff;
-  text-shadow: 
-    0 0 10px rgba(0, 217, 255, 0.5),
-    0 0 20px rgba(0, 217, 255, 0.3),
-    2px 2px 0px rgba(255, 0, 110, 0.2);
+  color: #1d1d1d;
 }
 
 .auth-header p {
-  color: #a0aec0;
+  color: #999;
   font-size: 15px;
   margin: 0;
   font-weight: 400;
@@ -167,20 +165,11 @@ body {
 
 .welcome-text {
   text-align: center;
-  color: #a0aec0;
+  color: #666;
   margin-bottom: 40px;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.6;
-}
-
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
 }
 
 .choice-buttons {
@@ -196,66 +185,38 @@ body {
   align-items: center;
   gap: 10px;
   padding: 20px;
-  border: 2px solid #ff006e;
+  border: 1px solid #e8e8e8;
   border-radius: 0;
-  background: rgba(255, 0, 110, 0.05);
-  backdrop-filter: none;
+  background: #f9f9f9;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
   font-size: 15px;
   font-weight: 600;
-  box-shadow: 
-    0 0 0 1px rgba(0, 217, 255, 0.2),
-    inset 0 0 15px rgba(255, 0, 110, 0.05);
-  color: #ff006e;
+  box-shadow: none;
+  color: #1d1d1d;
   position: relative;
-  overflow: hidden;
-}
-
-.choice-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #00d9ff, transparent);
-  animation: scanline 3s infinite;
-  opacity: 0.3;
-}
-
-@keyframes scanline {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
 }
 
 .choice-btn:hover {
-  background: rgba(255, 0, 110, 0.15);
-  border-color: #ff006e;
-  box-shadow: 
-    0 0 20px rgba(255, 0, 110, 0.4), 
-    inset 0 0 20px rgba(255, 0, 110, 0.1),
-    0 0 30px rgba(0, 217, 255, 0.2);
+  background: #ffffff;
+  border-color: #d0d0d0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transform: none;
 }
 
 .choice-icon {
   font-size: 28px;
-  color: #ff006e;
+  color: #333;
 }
 
 .choice-title {
-  color: #ff006e;
+  color: #1d1d1d;
   font-weight: 600;
   font-size: 15px;
 }
 
 .choice-desc {
-  color: #a0aec0;
+  color: #999;
   font-size: 13px;
   font-weight: 400;
 }
@@ -326,26 +287,11 @@ body {
 .form-group label {
   display: block;
   margin-bottom: 12px;
-  color: #00d9ff;
+  color: #1d1d1d;
   font-weight: 600;
   font-size: 13px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  text-shadow: 0 0 5px rgba(0, 217, 255, 0.3);
-  position: relative;
-  padding-left: 15px;
-}
-
-.form-group label::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
-  background: #ff006e;
-  box-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
 }
 
 .password-group {
@@ -362,26 +308,23 @@ body {
   width: 100%;
   padding: 14px 45px 14px 0;
   border: none;
-  border-bottom: 2px solid #00d9ff;
+  border-bottom: 1px solid #e0e0e0;
   border-radius: 0;
   font-size: 14px;
-  transition: all 0.2s;
+  transition: border-color 0.2s;
   box-sizing: border-box;
   background: transparent;
-  color: #00d9ff;
+  color: #1d1d1d;
 }
 
 .password-input-wrapper input::placeholder {
-  color: #5a7589;
+  color: #ccc;
 }
 
 .password-input-wrapper input:focus {
   outline: none;
-  border-bottom-color: #ff006e;
-  box-shadow: 
-    0 0 10px rgba(0, 217, 255, 0.3),
-    0 0 20px rgba(255, 0, 110, 0.2);
-  background: rgba(0, 217, 255, 0.02);
+  border-bottom-color: #1d1d1d;
+  box-shadow: none;
 }
 
 .toggle-password-btn {
@@ -395,47 +338,42 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #00d9ff;
-  transition: all 0.2s;
+  color: #999;
+  transition: color 0.2s;
 }
 
 .toggle-password-btn:hover {
-  color: #ff006e;
-  text-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
+  color: #1d1d1d;
 }
 
 .form-group input {
   width: 100%;
   padding: 12px 0;
   border: none;
-  border-bottom: 2px solid #00d9ff;
+  border-bottom: 1px solid #e0e0e0;
   border-radius: 0;
   font-size: 14px;
-  transition: all 0.2s;
+  transition: border-color 0.2s;
   box-sizing: border-box;
   background: transparent;
-  color: #00d9ff;
+  color: #1d1d1d;
 }
 
 .form-group input::placeholder {
-  color: #5a7589;
+  color: #ccc;
 }
 
 .form-group input:focus {
   outline: none;
-  border-bottom-color: #ff006e;
-  box-shadow: 
-    0 0 10px rgba(0, 217, 255, 0.3),
-    0 0 20px rgba(255, 0, 110, 0.2);
-  background: rgba(0, 217, 255, 0.02);
+  border-bottom-color: #1d1d1d;
+  box-shadow: none;
 }
 
 .error-message {
-  color: #ff006e;
+  color: #d32f2f;
   font-size: 13px;
   margin-top: 5px;
   margin-bottom: 0;
-  text-shadow: 0 0 5px rgba(255, 0, 110, 0.3);
 }
 
 .password-error {
@@ -446,45 +384,22 @@ body {
 .submit-btn {
   width: 100%;
   padding: 14px;
-  background: transparent;
-  color: #00d9ff;
-  border: 2px solid #00d9ff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
   border-radius: 0;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  box-shadow: 
-    0 0 0 1px rgba(255, 0, 110, 0.3),
-    inset 0 0 10px rgba(0, 217, 255, 0.03);
-  position: relative;
-  overflow: hidden;
-}
-
-.submit-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(0, 217, 255, 0.1), 
-    transparent);
-  animation: shimmer 3s infinite;
+  box-shadow: none;
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: rgba(0, 217, 255, 0.1);
-  border-color: #ff006e;
-  color: #ff006e;
-  box-shadow: 
-    0 0 20px rgba(0, 217, 255, 0.3), 
-    inset 0 0 20px rgba(0, 217, 255, 0.05),
-    0 0 30px rgba(255, 0, 110, 0.2);
+  background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .submit-btn:disabled {
@@ -495,25 +410,71 @@ body {
 .toggle-text {
   text-align: center;
   margin-top: 20px;
-  color: #a0aec0;
+  color: #999;
   font-size: 14px;
 }
 
 .toggle-btn {
   background: none;
   border: none;
-  color: #00d9ff;
+  color: #1d1d1d;
   cursor: pointer;
   font-weight: 600;
   text-decoration: underline;
   padding: 0;
   font-size: 14px;
-  transition: all 0.2s;
+  transition: color 0.2s;
 }
 
 .toggle-btn:hover {
-  color: #ff006e;
-  text-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
+  color: #667eea;
+}
+
+/* ===== RESPONSIVE STYLES FOR AUTH ===== */
+@media (max-width: 1024px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-visual {
+    min-height: 300px;
+    flex: 0;
+  }
+
+  .auth-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-visual {
+    min-height: 250px;
+    flex: 0;
+  }
+
+  .auth-card {
+    padding: 40px 30px;
+    min-height: auto;
+  }
+
+  .auth-visual-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+  }
+
+  .auth-visual-text {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .auth-visual-subtext {
+    font-size: 14px;
+    max-width: 250px;
+  }
 }
 
 /* ===== QUIZ PAGE STYLES ===== */

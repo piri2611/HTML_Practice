@@ -19602,12 +19602,104 @@ const Auth = ({ onAuthSuccess }) => {
   };
   const passwordError = view === "signup" && password ? validatePassword(password) : "";
   if (view === "login") {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "auth-container", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-card", children: [
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-container", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "auth-visual", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-visual-content", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "auth-visual-icon", children: "📚" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "auth-visual-text", children: "Master Web Basics" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "auth-visual-subtext", children: "Learn HTML fundamentals with our interactive practice platform" })
+      ] }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-card", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-header", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Login" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Sign in to your account" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleLogin, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "form-group", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Email Address" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                type: "email",
+                value: email,
+                onChange: (e) => setEmail(e.target.value),
+                placeholder: "Enter your email",
+                required: true
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "form-group password-group", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Password" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "password-input-wrapper", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "input",
+                {
+                  type: showPassword ? "text" : "password",
+                  value: password,
+                  onChange: (e) => setPassword(e.target.value),
+                  placeholder: "Enter your password",
+                  required: true
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  className: "toggle-password-btn",
+                  onClick: () => setShowPassword(!showPassword),
+                  tabIndex: -1,
+                  children: showPassword ? "👁️" : "👁️‍🗨️"
+                }
+              )
+            ] })
+          ] }),
+          error && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "error-message", children: error }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "submit", className: "submit-btn", disabled: isLoading, children: isLoading ? "Logging in..." : "Login" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "toggle-text", children: [
+          "Don't have an account?",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              className: "toggle-btn",
+              onClick: () => {
+                setView("signup");
+                setError("");
+                setEmail("");
+                setPassword("");
+              },
+              children: "Create one now"
+            }
+          )
+        ] })
+      ] })
+    ] });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-container", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "auth-visual", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-visual-content", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "auth-visual-icon", children: "🚀" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "auth-visual-text", children: "Start Learning Today" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "auth-visual-subtext", children: "Join thousands of students mastering web development basics" })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-card", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-header", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Login" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Sign in to your account" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Create Account" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Join our quiz platform" })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleLogin, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSignup, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "form-group", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Full Name" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "input",
+            {
+              type: "text",
+              value: firstName,
+              onChange: (e) => setFirstName(e.target.value),
+              placeholder: "Enter your full name",
+              required: true
+            }
+          )
+        ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "form-group", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Email Address" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -19630,7 +19722,7 @@ const Auth = ({ onAuthSuccess }) => {
                 type: showPassword ? "text" : "password",
                 value: password,
                 onChange: (e) => setPassword(e.target.value),
-                placeholder: "Enter your password",
+                placeholder: "Minimum 8 characters",
                 required: true
               }
             ),
@@ -19644,109 +19736,31 @@ const Auth = ({ onAuthSuccess }) => {
                 children: showPassword ? "👁️" : "👁️‍🗨️"
               }
             )
-          ] })
+          ] }),
+          passwordError && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "error-message password-error", children: passwordError })
         ] }),
         error && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "error-message", children: error }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "submit", className: "submit-btn", disabled: isLoading, children: isLoading ? "Logging in..." : "Login" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "submit", className: "submit-btn", disabled: isLoading || !!passwordError, children: isLoading ? "Creating account..." : "Create Account" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "toggle-text", children: [
-        "Don't have an account?",
+        "Already have an account?",
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",
           {
             type: "button",
             className: "toggle-btn",
             onClick: () => {
-              setView("signup");
+              setView("login");
               setError("");
               setEmail("");
               setPassword("");
             },
-            children: "Create one now"
+            children: "Login here"
           }
         )
       ] })
-    ] }) });
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "auth-container", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-card", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-header", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Create Account" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Join our quiz platform" })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSignup, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "form-group", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Full Name" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "input",
-          {
-            type: "text",
-            value: firstName,
-            onChange: (e) => setFirstName(e.target.value),
-            placeholder: "Enter your full name",
-            required: true
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "form-group", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Email Address" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "input",
-          {
-            type: "email",
-            value: email,
-            onChange: (e) => setEmail(e.target.value),
-            placeholder: "Enter your email",
-            required: true
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "form-group password-group", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Password" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "password-input-wrapper", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "input",
-            {
-              type: showPassword ? "text" : "password",
-              value: password,
-              onChange: (e) => setPassword(e.target.value),
-              placeholder: "Minimum 8 characters",
-              required: true
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              className: "toggle-password-btn",
-              onClick: () => setShowPassword(!showPassword),
-              tabIndex: -1,
-              children: showPassword ? "👁️" : "👁️‍🗨️"
-            }
-          )
-        ] }),
-        passwordError && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "error-message password-error", children: passwordError })
-      ] }),
-      error && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "error-message", children: error }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "submit", className: "submit-btn", disabled: isLoading || !!passwordError, children: isLoading ? "Creating account..." : "Create Account" })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "toggle-text", children: [
-      "Already have an account?",
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: "toggle-btn",
-          onClick: () => {
-            setView("login");
-            setError("");
-            setEmail("");
-            setPassword("");
-          },
-          children: "Login here"
-        }
-      )
     ] })
-  ] }) });
+  ] });
 };
 class QuestionService {
   /**

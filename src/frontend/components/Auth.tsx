@@ -79,6 +79,15 @@ export const Auth = ({ onAuthSuccess }: AuthProps) => {
   if (view === 'login') {
     return (
       <div className="auth-container">
+        <div className="auth-visual">
+          <div className="auth-visual-content">
+            <span className="auth-visual-icon">📚</span>
+            <div className="auth-visual-text">Master Web Basics</div>
+            <div className="auth-visual-subtext">
+              Learn HTML fundamentals with our interactive practice platform
+            </div>
+          </div>
+        </div>
         <div className="auth-card">
           <div className="auth-header">
             <h1>Login</h1>
@@ -148,12 +157,20 @@ export const Auth = ({ onAuthSuccess }: AuthProps) => {
   // SIGNUP VIEW
   return (
     <div className="auth-container">
+      <div className="auth-visual">
+        <div className="auth-visual-content">
+          <span className="auth-visual-icon">🚀</span>
+          <div className="auth-visual-text">Start Learning Today</div>
+          <div className="auth-visual-subtext">
+            Join thousands of students mastering web development basics
+          </div>
+        </div>
+      </div>
       <div className="auth-card">
         <div className="auth-header">
           <h1>Create Account</h1>
           <p>Join our quiz platform</p>
         </div>
-        
         <form onSubmit={handleSignup}>
           <div className="form-group">
             <label>Full Name</label>
