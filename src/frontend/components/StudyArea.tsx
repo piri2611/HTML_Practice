@@ -22,6 +22,7 @@ export const StudyArea = ({ onBack, onSelectQuestion, onViewReferences, onViewTa
     return saved ? parseInt(saved) : null;
   });
   const [showingHtmlQuiz, setShowingHtmlQuiz] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const tasksRef = React.useRef<HTMLDivElement>(null);
   
   // Load questions from database
@@ -1078,6 +1079,17 @@ worker.onmessage = function(event) {
       <header className="study-header">
         <nav className="w3schools-nav">
           <div className="nav-left">
+            <button 
+              className="mobile-menu-toggle" 
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              aria-label="Toggle sidebar"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
             <div className="nav-brand">
               <span className="brand-logo">AUSDAV</span>
             </div>
@@ -1103,7 +1115,14 @@ worker.onmessage = function(event) {
 
       <div className="study-content">
         <div className="study-layout">
-          <aside className="study-sidebar" aria-label="HTML topics">
+          <aside className={`study-sidebar ${isSidebarOpen ? 'sidebar-open' : ''}`} aria-label="HTML topics">
+            <button 
+              className="sidebar-close-btn" 
+              onClick={() => setIsSidebarOpen(false)}
+              aria-label="Close sidebar"
+            >
+              ✕
+            </button>
             <div className="sidebar-title">HTML Topics</div>
             <ul className="topic-list">
               {lessons.map((lesson) => (

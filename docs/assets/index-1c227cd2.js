@@ -20689,6 +20689,7 @@ const StudyArea = ({ onBack, onSelectQuestion, onViewReferences, onViewTags }) =
     return saved ? parseInt(saved) : null;
   });
   const [showingHtmlQuiz, setShowingHtmlQuiz] = reactExports.useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = reactExports.useState(false);
   const tasksRef = React.useRef(null);
   reactExports.useEffect(() => {
     const loadQuestions = async () => {
@@ -21723,6 +21724,19 @@ worker.onmessage = function(event) {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "study-container", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: "study-header", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "w3schools-nav", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "nav-left", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            className: "mobile-menu-toggle",
+            onClick: () => setIsSidebarOpen(!isSidebarOpen),
+            "aria-label": "Toggle sidebar",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "3", y1: "6", x2: "21", y2: "6" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "3", y1: "12", x2: "21", y2: "12" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "3", y1: "18", x2: "21", y2: "18" })
+            ] })
+          }
+        ),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "nav-brand", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "brand-logo", children: "AUSDAV" }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "nav-menu", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "nav-item active", children: "Tutorials" }),
@@ -21744,7 +21758,16 @@ worker.onmessage = function(event) {
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Learn HTML from the basics" })
     ] }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "study-content", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "study-layout", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("aside", { className: "study-sidebar", "aria-label": "HTML topics", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("aside", { className: `study-sidebar ${isSidebarOpen ? "sidebar-open" : ""}`, "aria-label": "HTML topics", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            className: "sidebar-close-btn",
+            onClick: () => setIsSidebarOpen(false),
+            "aria-label": "Close sidebar",
+            children: "✕"
+          }
+        ),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "sidebar-title", children: "HTML Topics" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "topic-list", children: lessons.map((lesson) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",
