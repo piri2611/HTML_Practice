@@ -50,22 +50,27 @@ This command:
 
 ### GitHub Pages Deployment
 
-1. **Build locally:**
-   ```bash
-   npm run build
-   ```
+**Automated deployment is now set up!** The site automatically builds and deploys when you push to the `main` branch.
 
-2. **Commit source files only:**
+1. **Make your changes to source files**
+   
+2. **Commit and push to main:**
    ```bash
    git add -A
    git commit -m "Update source code"
    git push origin main
    ```
 
-3. **GitHub Actions builds and deploys** (or manual deployment):
-   - The `dist/` folder is generated fresh during CI/CD
-   - Asset filenames include content hashes for cache busting
-   - All references in `index.html` automatically match the generated assets
+3. **GitHub Actions automatically:**
+   - Installs dependencies
+   - Builds the project (`npm run build`)
+   - Deploys the `dist/` folder to GitHub Pages
+   - Your site updates at: https://piri2611.github.io/HTML_Practice/
+
+**Note:** The first time you push, you need to enable GitHub Pages in repository settings:
+- Go to: Settings → Pages
+- Set Source to: "GitHub Actions" (not "Deploy from a branch")
+- The workflow will handle the rest!
 
 ## Why Dist is Not Committed
 
