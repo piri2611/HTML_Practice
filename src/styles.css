@@ -987,6 +987,39 @@ body {
   color: #333;
 }
 
+.mobile-nav-menu {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.mobile-nav-item {
+  background: #f8f9fa;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  color: #333;
+}
+
+.mobile-nav-item:hover {
+  background: #e3f2fd;
+  border-color: #04AA6D;
+}
+
+.mobile-nav-item.active {
+  background: #04AA6D;
+  color: white;
+  border-color: #04AA6D;
+}
+
 .sidebar-title {
   font-weight: 700;
   color: #04AA6D;
@@ -3307,6 +3340,10 @@ body {
 
   .sidebar-close-btn {
     display: block;
+  }
+
+  .mobile-nav-menu {
+    display: flex;
   }
 
   .study-content {
