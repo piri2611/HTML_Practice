@@ -46,38 +46,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, 
-    #667eea 0%, 
-    #764ba2 25%, 
-    #f093fb 50%, 
-    #4facfe 75%, 
-    #00f2fe 100%);
-  background-size: 400% 400%;
-  animation: auroraGradient 8s ease infinite;
+  background: #0a0e27;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
   position: relative;
   overflow: hidden;
 }
 
-@keyframes auroraGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .auth-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  padding: 60px 40px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: #0f1629;
+  padding: 80px 50px;
+  border-radius: 0;
+  border: 2px solid #00d9ff;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3), inset 0 0 20px rgba(0, 217, 255, 0.1);
   width: 100%;
   max-width: 350px;
   position: relative;
@@ -86,9 +66,12 @@ body {
 
 .auth-card h1 {
   text-align: center;
-  color: #333;
+  color: #00d9ff;
   margin-bottom: 10px;
   font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
 }
 
 .auth-header {
@@ -100,11 +83,12 @@ body {
   margin-bottom: 12px;
   font-size: 32px;
   font-weight: 700;
-  color: #ffffff;
+  color: #00d9ff;
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
 }
 
 .auth-header p {
-  color: rgba(255, 255, 255, 0.9);
+  color: #a0aec0;
   font-size: 15px;
   margin: 0;
   font-weight: 400;
@@ -116,7 +100,7 @@ body {
 
 .welcome-text {
   text-align: center;
-  color: rgba(255, 255, 255, 0.9);
+  color: #a0aec0;
   margin-bottom: 40px;
   font-size: 15px;
   font-weight: 400;
@@ -136,38 +120,39 @@ body {
   align-items: center;
   gap: 10px;
   padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
+  border: 2px solid #ff006e;
+  border-radius: 0;
+  background: rgba(255, 0, 110, 0.05);
+  backdrop-filter: none;
   cursor: pointer;
   transition: all 0.3s;
   font-size: 15px;
   font-weight: 600;
   box-shadow: none;
-  color: white;
+  color: #ff006e;
+  position: relative;
 }
 
 .choice-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 0, 110, 0.15);
+  border-color: #ff006e;
+  box-shadow: 0 0 20px rgba(255, 0, 110, 0.4), inset 0 0 20px rgba(255, 0, 110, 0.1);
+  transform: none;
 }
 
 .choice-icon {
   font-size: 28px;
-  color: white;
+  color: #ff006e;
 }
 
 .choice-title {
-  color: white;
+  color: #ff006e;
   font-weight: 600;
   font-size: 15px;
 }
 
 .choice-desc {
-  color: rgba(255, 255, 255, 0.8);
+  color: #a0aec0;
   font-size: 13px;
   font-weight: 400;
 }
@@ -237,10 +222,12 @@ body {
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
-  color: white;
+  margin-bottom: 12px;
+  color: #00d9ff;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .password-group {
@@ -255,74 +242,76 @@ body {
 
 .password-input-wrapper input {
   width: 100%;
-  padding: 12px 45px 12px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 5px;
+  padding: 14px 45px 14px 0;
+  border: none;
+  border-bottom: 2px solid #00d9ff;
+  border-radius: 0;
   font-size: 14px;
-  transition: border-color 0.3s;
+  transition: all 0.2s;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-  color: white;
+  background: transparent;
+  color: #00d9ff;
 }
 
 .password-input-wrapper input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: #5a7589;
 }
 
 .password-input-wrapper input:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.15);
+  border-bottom-color: #ff006e;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
 }
 
 .toggle-password-btn {
   position: absolute;
-  right: 12px;
+  right: 0;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   padding: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.7);
+  color: #00d9ff;
+  transition: all 0.2s;
 }
 
 .toggle-password-btn:hover {
-  color: white;
+  color: #ff006e;
+  text-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
 }
 
 .form-group input {
   width: 100%;
   padding: 12px 0;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 2px solid #00d9ff;
   border-radius: 0;
   font-size: 14px;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
   box-sizing: border-box;
   background: transparent;
-  color: white;
+  color: #00d9ff;
 }
 
 .form-group input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: #5a7589;
 }
 
 .form-group input:focus {
   outline: none;
-  border-bottom-color: rgba(255, 255, 255, 0.7);
-  box-shadow: none;
+  border-bottom-color: #ff006e;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
 }
 
 .error-message {
-  color: #d32f2f;
+  color: #ff006e;
   font-size: 13px;
   margin-top: 5px;
   margin-bottom: 0;
+  text-shadow: 0 0 5px rgba(255, 0, 110, 0.3);
 }
 
 .password-error {
@@ -332,24 +321,25 @@ body {
 
 .submit-btn {
   width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  font-size: 15px;
+  padding: 14px;
+  background: transparent;
+  color: #00d9ff;
+  border: 2px solid #00d9ff;
+  border-radius: 0;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
   letter-spacing: 0.5px;
-  backdrop-filter: blur(5px);
+  text-transform: uppercase;
+  box-shadow: none;
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.25) 100%);
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
+  background: rgba(0, 217, 255, 0.1);
+  border-color: #ff006e;
+  color: #ff006e;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3), inset 0 0 20px rgba(0, 217, 255, 0.05);
 }
 
 .submit-btn:disabled {
@@ -360,23 +350,25 @@ body {
 .toggle-text {
   text-align: center;
   margin-top: 20px;
-  color: rgba(255, 255, 255, 0.8);
+  color: #a0aec0;
   font-size: 14px;
 }
 
 .toggle-btn {
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.9);
+  color: #00d9ff;
   cursor: pointer;
   font-weight: 600;
   text-decoration: underline;
   padding: 0;
   font-size: 14px;
+  transition: all 0.2s;
 }
 
 .toggle-btn:hover {
-  color: white;
+  color: #ff006e;
+  text-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
 }
 
 /* ===== QUIZ PAGE STYLES ===== */
