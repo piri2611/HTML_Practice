@@ -47,6 +47,31 @@ body {
   justify-content: center;
   align-items: center;
   background: #0a0e27;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 217, 255, 0.03) 0px,
+      transparent 1px,
+      transparent 2px,
+      rgba(0, 217, 255, 0.03) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 0, 110, 0.02) 0px,
+      transparent 2px,
+      transparent 4px,
+      rgba(255, 0, 110, 0.02) 6px
+    ),
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(0, 217, 255, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(255, 0, 110, 0.05) 0%,
+      transparent 50%
+    );
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
   position: relative;
   overflow: hidden;
@@ -57,11 +82,47 @@ body {
   padding: 80px 50px;
   border-radius: 0;
   border: 2px solid #00d9ff;
-  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3), inset 0 0 20px rgba(0, 217, 255, 0.1);
+  box-shadow: 
+    0 0 20px rgba(0, 217, 255, 0.3), 
+    inset 0 0 20px rgba(0, 217, 255, 0.1),
+    inset -40px -40px 80px rgba(0, 217, 255, 0.02),
+    inset 40px 40px 80px rgba(255, 0, 110, 0.02);
   width: 100%;
   max-width: 350px;
   position: relative;
   z-index: 10;
+}
+
+.auth-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    #00d9ff 20%, 
+    #ff006e 50%, 
+    #00d9ff 80%, 
+    transparent);
+  opacity: 0.5;
+}
+
+.auth-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    #ff006e 20%, 
+    #00d9ff 50%, 
+    #ff006e 80%, 
+    transparent);
+  opacity: 0.5;
 }
 
 .auth-card h1 {
@@ -71,7 +132,10 @@ body {
   font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.5px;
-  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+  text-shadow: 
+    0 0 10px rgba(0, 217, 255, 0.5),
+    0 0 20px rgba(0, 217, 255, 0.3),
+    2px 2px 0px rgba(255, 0, 110, 0.2);
 }
 
 .auth-header {
@@ -84,7 +148,10 @@ body {
   font-size: 32px;
   font-weight: 700;
   color: #00d9ff;
-  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+  text-shadow: 
+    0 0 10px rgba(0, 217, 255, 0.5),
+    0 0 20px rgba(0, 217, 255, 0.3),
+    2px 2px 0px rgba(255, 0, 110, 0.2);
 }
 
 .auth-header p {
@@ -105,6 +172,15 @@ body {
   font-size: 15px;
   font-weight: 400;
   line-height: 1.6;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .choice-buttons {
@@ -128,15 +204,42 @@ body {
   transition: all 0.3s;
   font-size: 15px;
   font-weight: 600;
-  box-shadow: none;
+  box-shadow: 
+    0 0 0 1px rgba(0, 217, 255, 0.2),
+    inset 0 0 15px rgba(255, 0, 110, 0.05);
   color: #ff006e;
   position: relative;
+  overflow: hidden;
+}
+
+.choice-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00d9ff, transparent);
+  animation: scanline 3s infinite;
+  opacity: 0.3;
+}
+
+@keyframes scanline {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .choice-btn:hover {
   background: rgba(255, 0, 110, 0.15);
   border-color: #ff006e;
-  box-shadow: 0 0 20px rgba(255, 0, 110, 0.4), inset 0 0 20px rgba(255, 0, 110, 0.1);
+  box-shadow: 
+    0 0 20px rgba(255, 0, 110, 0.4), 
+    inset 0 0 20px rgba(255, 0, 110, 0.1),
+    0 0 30px rgba(0, 217, 255, 0.2);
   transform: none;
 }
 
@@ -228,6 +331,21 @@ body {
   font-size: 13px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  text-shadow: 0 0 5px rgba(0, 217, 255, 0.3);
+  position: relative;
+  padding-left: 15px;
+}
+
+.form-group label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: #ff006e;
+  box-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
 }
 
 .password-group {
@@ -260,7 +378,10 @@ body {
 .password-input-wrapper input:focus {
   outline: none;
   border-bottom-color: #ff006e;
-  box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+  box-shadow: 
+    0 0 10px rgba(0, 217, 255, 0.3),
+    0 0 20px rgba(255, 0, 110, 0.2);
+  background: rgba(0, 217, 255, 0.02);
 }
 
 .toggle-password-btn {
@@ -303,7 +424,10 @@ body {
 .form-group input:focus {
   outline: none;
   border-bottom-color: #ff006e;
-  box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+  box-shadow: 
+    0 0 10px rgba(0, 217, 255, 0.3),
+    0 0 20px rgba(255, 0, 110, 0.2);
+  background: rgba(0, 217, 255, 0.02);
 }
 
 .error-message {
@@ -332,14 +456,35 @@ body {
   transition: all 0.3s;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  box-shadow: none;
+  box-shadow: 
+    0 0 0 1px rgba(255, 0, 110, 0.3),
+    inset 0 0 10px rgba(0, 217, 255, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 217, 255, 0.1), 
+    transparent);
+  animation: shimmer 3s infinite;
 }
 
 .submit-btn:hover:not(:disabled) {
   background: rgba(0, 217, 255, 0.1);
   border-color: #ff006e;
   color: #ff006e;
-  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3), inset 0 0 20px rgba(0, 217, 255, 0.05);
+  box-shadow: 
+    0 0 20px rgba(0, 217, 255, 0.3), 
+    inset 0 0 20px rgba(0, 217, 255, 0.05),
+    0 0 30px rgba(255, 0, 110, 0.2);
 }
 
 .submit-btn:disabled {
