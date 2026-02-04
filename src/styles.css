@@ -3275,7 +3275,20 @@ body {
   }
 
   .nav-menu {
-    display: none;
+    display: flex;
+    gap: 4px;
+    font-size: 11px;
+  }
+
+  .nav-item {
+    padding: 6px 10px;
+    font-size: 11px;
+    height: auto;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav-item.active {
+    border-bottom-color: #04AA6D;
   }
 
   .nav-right {
@@ -3344,10 +3357,6 @@ body {
 
   .sidebar-close-btn {
     display: block;
-  }
-
-  .mobile-nav-menu {
-    display: flex;
   }
 
   .study-content {
@@ -3438,6 +3447,15 @@ body {
 
   .nav-left {
     gap: 8px;
+  }
+
+  .nav-menu {
+    gap: 2px;
+  }
+
+  .nav-item {
+    padding: 4px 8px;
+    font-size: 10px;
   }
 
   .nav-brand {

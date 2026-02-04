@@ -21768,17 +21768,6 @@ worker.onmessage = function(event) {
             children: "✕"
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mobile-nav-menu", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "mobile-nav-item active", children: "Tutorials" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "mobile-nav-item", onClick: () => {
-            onViewReferences();
-            setIsSidebarOpen(false);
-          }, children: "References" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "mobile-nav-item", onClick: () => {
-            onViewTags();
-            setIsSidebarOpen(false);
-          }, children: "Tags" })
-        ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "sidebar-title", children: "HTML Topics" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "topic-list", children: lessons.map((lesson) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",

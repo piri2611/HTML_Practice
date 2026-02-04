@@ -1124,13 +1124,6 @@ worker.onmessage = function(event) {
               ✕
             </button>
             
-            {/* Mobile Navigation Menu */}
-            <div className="mobile-nav-menu">
-              <button className="mobile-nav-item active">Tutorials</button>
-              <button className="mobile-nav-item" onClick={() => { onViewReferences(); setIsSidebarOpen(false); }}>References</button>
-              <button className="mobile-nav-item" onClick={() => { onViewTags(); setIsSidebarOpen(false); }}>Tags</button>
-            </div>
-            
             <div className="sidebar-title">HTML Topics</div>
             <ul className="topic-list">
               {lessons.map((lesson) => (
