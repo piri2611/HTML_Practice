@@ -14,6 +14,7 @@ interface StudyAreaProps {
 export const StudyArea = ({ onBack, onSelectQuestion, onViewReferences, onViewTags }: StudyAreaProps) => {
   const { user, logout } = useAuth();
   const [questions, setQuestions] = useState<QuestionData[]>([]);
+  const [tasksLoaded, setTasksLoaded] = useState(false);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const [selectedTaskId, setSelectedTaskId] = useState<number | null>(() => {
     // Restore selected task from sessionStorage
@@ -28,6 +29,7 @@ export const StudyArea = ({ onBack, onSelectQuestion, onViewReferences, onViewTa
     const loadQuestions = async () => {
       const allQuestions = await BackendAPI.questions.getAll();
       setQuestions(allQuestions);
+      setTasksLoaded(true);
     };
     loadQuestions();
   }, []);
@@ -1070,17 +1072,19 @@ worker.onmessage = function(event) {
     <div className="study-container">
       <header className="study-header">
         <nav className="w3schools-nav">
-          <div className="nav-logo">
-            <span className="logo-text">AUSDAV</span>
-          </div>
-          <div className="nav-menu">
-            <button className="nav-item active">Tutorials</button>
-            <button className="nav-item" onClick={onViewReferences}>References</button>
-            <button className="nav-item" onClick={onViewTags}>Tags</button>
+          <div className="nav-left">
+            <div className="nav-brand">
+              <span className="brand-logo">AUSDAV</span>
+            </div>
+            <div className="nav-menu">
+              <button className="nav-item active">Tutorials</button>
+              <button className="nav-item" onClick={onViewReferences}>References</button>
+              <button className="nav-item" onClick={onViewTags}>Tags</button>
+            </div>
           </div>
           <div className="nav-right">
-            <span className="user-info">Welcome, {user?.name}!</span>
-            <button className="logout-btn" onClick={logout}>Logout</button>
+            <span className="user-greeting">Hi, {user?.name}!</span>
+            <button className="logout-btn" onClick={logout}>Sign Out</button>
           </div>
         </nav>
       </header>
@@ -1113,26 +1117,32 @@ worker.onmessage = function(event) {
               ))}
             </ul>
             
-            {questions.length > 0 && (
+            {tasksLoaded || questions.length > 0 ? (
               <>
                 <div ref={tasksRef} className="sidebar-title" style={{ marginTop: '24px' }}>HTML Tasks</div>
                 <ul className="topic-list">
-                  {questions.map((question) => (
-                    <li key={`task-${question.id}`}>
-                      <button
-                        className={`topic-item ${selectedTaskId === question.id && !showingHtmlQuiz ? 'active' : ''}`}
-                        onClick={() => {
-                          setSelectedTaskId(question.id);
-                          setShowingHtmlQuiz(false);
-                        }}
-                      >
-                        {question.title}
-                      </button>
+                  {questions.length > 0 ? (
+                    questions.map((question) => (
+                      <li key={`task-${question.id}`}>
+                        <button
+                          className={`topic-item ${selectedTaskId === question.id && !showingHtmlQuiz ? 'active' : ''}`}
+                          onClick={() => {
+                            setSelectedTaskId(question.id);
+                            setShowingHtmlQuiz(false);
+                          }}
+                        >
+                          {question.title}
+                        </button>
+                      </li>
+                    ))
+                  ) : (
+                    <li style={{ padding: '8px 12px', color: '#999', fontSize: '12px' }}>
+                      Loading tasks...
                     </li>
-                  ))}
+                  )}
                 </ul>
               </>
-            )}
+            ) : null}
             
             <div className="sidebar-title" style={{ marginTop: '24px' }}>Quiz</div>
             <ul className="topic-list">

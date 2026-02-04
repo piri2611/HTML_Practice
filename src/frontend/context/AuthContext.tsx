@@ -152,16 +152,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const loginWithGoogle = async (email: string, name: string): Promise<boolean> => {
-    try {
-      setUser({ email, name });
-      return true;
-    } catch (error: any) {
-      alert(error?.message || 'Google login failed');
-      return false;
-    }
-  };
-
   const logout = async () => {
     try {
       setUser(null);
