@@ -19412,12 +19412,15 @@ function shouldShowDeprecationWarning() {
 }
 if (shouldShowDeprecationWarning())
   console.warn("⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217");
-const SUPABASE_URL = "https://qxtrzxoxgzexfmcyjwji.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4dHJ6eG94Z3pleGZtY3lqd2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk4MTc2NzgsImV4cCI6MjA4NTM5MzY3OH0.Tn22XWObE_qN-pUzXaQgBz6o4qq8KkEbJhC008237cA";
+const SUPABASE_URL = {}.VITE_SUPABASE_URL || "";
+const SUPABASE_ANON_KEY = {}.VITE_SUPABASE_ANON_KEY || "";
+if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+  console.warn("Supabase credentials not configured. Some features may not work.");
+}
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const dbConfig = {
   url: SUPABASE_URL,
-  isConfigured: Boolean(SUPABASE_ANON_KEY)
+  isConfigured: Boolean(SUPABASE_URL && SUPABASE_ANON_KEY)
 };
 const AuthContext = reactExports.createContext(void 0);
 const AuthProvider = ({ children }) => {
