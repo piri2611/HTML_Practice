@@ -21527,12 +21527,17 @@ Step 4: Open index.html in your browser`
       exampleTitle: "Get user coordinates",
       code: `<script>
 if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-    console.log("Latitude: " + lat);
-    console.log("Longitude: " + lon);
-  });
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      console.log("Latitude: " + lat);
+      console.log("Longitude: " + lon);
+    },
+    function(error) {
+      console.error("Error getting location: " + error.message);
+    }
+  );
 } else {
   console.log("Geolocation is not supported");
 }
