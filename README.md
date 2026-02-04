@@ -61,6 +61,25 @@ quiz/
    npm run preview
    ```
 
+## 🌐 Deployment
+
+This project uses **GitHub Actions** for automated deployment to GitHub Pages.
+
+**Live Site:** https://piri2611.github.io/HTML_Practice/
+
+### How to Deploy Updates:
+1. Make your changes in the `src/` directory
+2. Commit and push to the `main` branch:
+   ```bash
+   git add -A
+   git commit -m "Your update"
+   git push origin main
+   ```
+3. GitHub Actions automatically builds and deploys your changes
+4. Visit the live site in 1-2 minutes
+
+For detailed deployment instructions, see [GITHUB_PAGES_SETUP.md](./GITHUB_PAGES_SETUP.md).
+
 ## 🎯 How to Use
 
 ### Sign Up
