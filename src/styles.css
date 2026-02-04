@@ -3200,32 +3200,42 @@ body {
 
 @media (max-width: 768px) {
   .w3schools-nav {
-    padding: 0 20px;
-    gap: 15px;
-    height: 65px;
+    padding: 0 12px;
+    gap: 8px;
+    height: 60px;
+  }
+
+  .nav-left {
+    gap: 8px;
+    flex: 1;
   }
 
   .nav-brand {
-    font-size: 24px;
-    letter-spacing: 1.5px;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .brand-logo {
+    font-size: 18px;
+    letter-spacing: 1px;
   }
 
   .brand-icon {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .brand-text {
-    font-size: 24px;
-    letter-spacing: 1.5px;
+    font-size: 20px;
+    letter-spacing: 1px;
   }
 
   .logo-text {
-    font-size: 22px;
-    letter-spacing: 1.5px;
+    font-size: 18px;
+    letter-spacing: 1px;
   }
 
   .logo-subtext {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   .nav-menu {
@@ -3233,21 +3243,27 @@ body {
   }
 
   .nav-right {
-    gap: 12px;
-    font-size: 13px;
+    gap: 8px;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .user-greeting {
+    display: none;
   }
 
   .user-info {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .user-name {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .logout-btn {
-    padding: 8px 16px;
-    font-size: 13px;
+    padding: 6px 12px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 
   .page-header {
@@ -3373,6 +3389,33 @@ body {
 }
 
 @media (max-width: 480px) {
+  .w3schools-nav {
+    padding: 0 8px;
+    height: 55px;
+  }
+
+  .nav-brand {
+    font-size: 16px;
+  }
+
+  .brand-logo {
+    font-size: 16px;
+  }
+
+  .logout-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .mobile-menu-toggle {
+    padding: 6px;
+  }
+
+  .mobile-menu-toggle svg {
+    width: 20px;
+    height: 20px;
+  }
+
   .study-header {
     padding: 10px;
   }
