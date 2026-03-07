@@ -22644,16 +22644,11 @@ worker.onmessage = function(event) {
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Description:" }),
             " ",
             selectedTask.description
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { style: { color: "#666" }, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Blanks to fill:" }),
-            " ",
-            selectedTask.blanksCount
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "study-section", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "HTML Code to Complete" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("pre", { className: "study-code", children: /* @__PURE__ */ jsxRuntimeExports.jsx("code", { children: selectedTask.htmlContent }) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Task Details" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: selectedTask.description })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "lesson-navigation", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(

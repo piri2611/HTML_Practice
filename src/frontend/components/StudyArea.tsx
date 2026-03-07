@@ -1316,14 +1316,12 @@ worker.onmessage = function(event) {
                   <h2>{selectedTask.title}</h2>
                   <p style={{ color: '#666', marginBottom: '16px' }}><strong>Difficulty:</strong> <span style={{ display: 'inline-block', padding: '4px 12px', borderRadius: '4px', backgroundColor: selectedTask.difficulty === 'easy' ? '#4caf50' : selectedTask.difficulty === 'medium' ? '#ff9800' : '#f44336', color: 'white' }}>{selectedTask.difficulty.charAt(0).toUpperCase() + selectedTask.difficulty.slice(1)}</span></p>
                   <p style={{ color: '#333', marginBottom: '20px' }}><strong>Description:</strong> {selectedTask.description}</p>
-                  <p style={{ color: '#666' }}><strong>Blanks to fill:</strong> {selectedTask.blanksCount}</p>
                 </section>
                 
                 <section className="study-section">
-                  <h3>HTML Code to Complete</h3>
-                  <pre className="study-code">
-                    <code>{selectedTask.htmlContent}</code>
-                  </pre>
+                  <h3>Task Details</h3>
+                  {/* instead of showing the raw HTML with blanks, present a human-friendly explanation */}
+                  <p>{selectedTask.description}</p>
                 </section>
                 
                 <div className="lesson-navigation">
