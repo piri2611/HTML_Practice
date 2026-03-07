@@ -3666,7 +3666,7 @@ a.button:focus {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  padding: 8px; /* give a bit more breathing room around card */
+  padding: 4px; /* less padding to allow wider card */
   backdrop-filter: blur(8px);
 }
 
@@ -3675,9 +3675,9 @@ a.button:focus {
   border-radius: 16px;
   /* make the card slightly narrower than the viewport so padding doesn\'t shrink it */
   width: auto;
-  max-width: 90vw; /* cap width on very large screens */
-  max-height: 90vh;
-  overflow: auto; /* scroll if content grows too tall */
+  max-width: 98vw; /* nearly full viewport width */
+  max-height: none; /* allow height to grow with content */
+  overflow: visible; /* avoid scrollbars whenever possible */
   display: flex;
   flex-direction: column;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -3710,8 +3710,9 @@ a.button:focus {
 }
 
 .fullscreen-content {
-  flex: 1;
-  overflow: hidden;
+  /* do not force flex sizing; let content determine height */
+  flex: none;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   padding: 0 14px 14px 14px;
@@ -3721,9 +3722,15 @@ a.button:focus {
   background: #0f172a;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  overflow: hidden;
-  color: #f8fafc; /* also enforce here */
 }
+
+/* override fullscreen styles to simple content‑sized modal */
+.fullscreen-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; }
+.fullscreen-card { background: #0f172a; color: #fff; padding: 24px; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); width: auto; height: auto; }
+.fullscreen-card, .fullscreen-card * { color: #fff !important; }
+.fullscreen-close { align-self: flex-end; padding: 10px 20px; background: linear-gradient(135deg,#ef4444 0%,#dc2626 100%); color:white; border:none; border-radius:8px; cursor:pointer; font-size:14px; font-weight:600; margin:14px; transition:all 0.3s; box-shadow:0 4px 12px rgba(239,68,68,0.3); }
+.fullscreen-close:hover { transform:scale(1.05); box-shadow:0 6px 16px rgba(239,68,68,0.4); }
+.fullscreen-content { padding:0; }
 
 .result-buttons {
   display: flex;

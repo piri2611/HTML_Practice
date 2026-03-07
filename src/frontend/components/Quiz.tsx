@@ -125,9 +125,11 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
   const { user, logout } = useAuth();
   // store full HTML including blank markers; user types over blanks manually
   const [userCode, setUserCode] = useState('');
+  // populate output when question loads
+
   const [timeRemaining, setTimeRemaining] = useState(1800);
   const [submitted, setSubmitted] = useState(false);
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true); // show comparison immediately on load
   const [score, setScore] = useState(0);
   const [question, setQuestion] = useState<QuestionData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -178,21 +180,26 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
   const handleSubmit = async () => {
     if (!question) return;
 
-    // determine correctness for each blank by extracting what the user typed in that location
-    let correctCount = 0;
-    question.blanks.forEach(blank => {
-      const userAnswer = getUserAnswerForBlank(blank).toLowerCase().trim();
-      const correctAnswer = blank.correctAnswer.toLowerCase().trim();
-      if (userAnswer === correctAnswer) {
-        correctCount++;
-      }
-    });
+    // compare entire userCode against expected complete HTML
+    const expected = generateHtmlOutput(question.htmlContent, {});
 
-    const percentage = Math.round((correctCount / question.blanks.length) * 100);
-    const isCorrect = correctCount === question.blanks.length;
+    // normalize whitespace for fair comparison
+    const normalize = (str: string) => str.replace(/\s+/g, ' ').trim();
+    const u = normalize(userCode);
+    const e = normalize(expected);
+
+    // count matching characters up to the longer length
+    let equal = 0;
+    const maxLen = Math.max(u.length, e.length);
+    for (let i = 0; i < Math.min(u.length, e.length); i++) {
+      if (u[i] === e[i]) equal++;
+    }
+    const percentage = maxLen === 0 ? 100 : Math.round((equal / maxLen) * 100);
+    const isCorrect = percentage >= 80;
 
     setScore(percentage);
     setSubmitted(true);
+    setFullscreenCard('expected');
 
     // Save to user_progress table
     if (user?.id && user?.email) {
@@ -206,7 +213,7 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
     }
 
     // Mark as solved if score >= 80%
-    if (percentage >= 80 && user?.id) {
+    if (isCorrect && user?.id) {
       BackendAPI.storage.markSolved(user.id, question.id);
     }
   };
@@ -283,6 +290,8 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
       // initialize editor with minimal skeleton; user types everything manually
       if (questionData) {
         setUserCode('<!DOCTYPE html>\n<html>\n</html>');
+        setChecked(true);            // display comparison panels by default
+        handleCheck();              // run check logic to populate output frames
       }
 
       // Check if question is already completed correctly
@@ -406,7 +415,7 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
                     <iframe
                       srcDoc={userCode}
                       title="Your Output"
-                      style={{ width: '100%', height: '100%', border: 'none', borderRadius: '4px' }}
+                      style={{ width: '100%', height: 'auto', border: 'none', borderRadius: '4px' }}
                       sandbox="allow-same-origin allow-scripts"
                     />
                   </div>
@@ -422,7 +431,7 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
                     <iframe
                       srcDoc={generateHtmlOutput(question.htmlContent, {})}
                       title="Expected Output"
-                      style={{ width: '100%', height: '100%', border: 'none', borderRadius: '4px' }}
+                      style={{ width: '100%', height: 'auto', border: 'none', borderRadius: '4px' }}
                       sandbox="allow-same-origin allow-scripts"
                     />
                   </div>
@@ -501,68 +510,11 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
                 <div className="result-header">
                   <h3>📊 Quiz Results</h3>
                   <div className="score-display">
-                    <p>Correct Answers: <strong>{Math.round(score / 100 * question.blanks.length)} / {question.blanks.length}</strong></p>
-                    <p>Score: <strong className={score === 100 ? 'perfect-score' : score >= 80 ? 'good-score' : 'needs-improvement'}>{Math.round(score)}%</strong></p>
+                    <p>Similarity to expected code: <strong className={score === 100 ? 'perfect-score' : score >= 80 ? 'good-score' : 'needs-improvement'}>{Math.round(score)}%</strong></p>
                   </div>
                 </div>
 
-                <div className="explanation-panels">
-                  <h4>📚 Detailed Explanations</h4>
-                  {question.blanks.map((blank, index) => {
-                    const userAnswer = getUserAnswerForBlank(blank).toLowerCase().trim();
-                    const correctAnswer = blank.correctAnswer.toLowerCase().trim();
-                    const isCorrect = userAnswer === correctAnswer;
-                    const isExpanded = expandedExplanations.has(blank.id);
-
-                    return (
-                      <div key={blank.id} className="explanation-panel">
-                        <button
-                          className={`explanation-header ${isCorrect ? 'correct' : 'incorrect'}`}
-                          onClick={() => toggleExplanation(blank.id)}
-                        >
-                          <span className="explanation-toggle">
-                            {isExpanded ? '▼' : '▶'}
-                          </span>
-                          <span className="explanation-title">
-                            {isCorrect ? '✅' : '❌'} {blank.id} (Question {index + 1})
-                          </span>
-                          <span className="explanation-answer">
-                            {isCorrect ? 'Correct!' : 'Incorrect'}
-                          </span>
-                        </button>
-
-                        {isExpanded && (
-                          <div className="explanation-content">
-                            <div className="answer-comparison">
-                              <div className="your-answer">
-                                <strong>Your Answer:</strong>
-                                <p className={isCorrect ? 'correct-text' : 'incorrect-text'}>
-                                  "{userAnswer || '(blank)'}"
-                                </p>
-                              </div>
-                              <div className="correct-answer">
-                                <strong>Correct Answer:</strong>
-                                <p className="correct-text">"{correctAnswer}"</p>
-                              </div>
-                            </div>
-
-                            <div className="explanation-text">
-                              <strong>Why:</strong>
-                              <p>
-                                {blank.explanation || getDefaultExplanation(blank.id, correctAnswer)}
-                              </p>
-                            </div>
-
-                            <div className="learning-tip">
-                              <strong>💡 Learning Tip:</strong>
-                              <p>{getLearnignTip(blank.id, correctAnswer)}</p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                {/* we no longer display per-blank explanations when using full-code comparison */}
 
                 {/* Action Buttons */}
                 <div className="result-actions">

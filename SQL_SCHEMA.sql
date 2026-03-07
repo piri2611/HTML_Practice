@@ -52,6 +52,51 @@ CREATE POLICY "Users can insert their own progress"
 CREATE INDEX idx_user_progress_user_id ON public.user_progress(user_id);
 CREATE INDEX idx_user_progress_email ON public.user_progress(user_email);
 
+-- add additional question status columns for newly added questions
+-- keep this in sync or consider normalizing progress storage
+ALTER TABLE public.user_progress
+  ADD COLUMN IF NOT EXISTS question_11_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_12_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_13_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_14_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_15_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_16_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_17_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_18_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_19_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_20_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_21_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_22_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_23_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_24_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_25_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_26_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_27_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_28_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_29_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_30_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_31_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_32_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_33_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_34_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_35_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_36_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_37_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_38_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_39_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_40_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_41_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_42_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_43_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_44_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_45_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_46_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_47_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_48_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_49_status text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS question_50_status text DEFAULT NULL;
+
+
 -- ============================================
 -- 5. QUESTIONS TABLE (Store quiz questions)
 -- ============================================
