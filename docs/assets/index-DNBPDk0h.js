@@ -19298,7 +19298,6 @@ const Quiz = ({ questionId, onBack }) => {
   const [question, setQuestion] = reactExports.useState(null);
   const [loading, setLoading] = reactExports.useState(true);
   const [isAlreadyCompleted, setIsAlreadyCompleted] = reactExports.useState(false);
-  const [fullscreenCard, setFullscreenCard] = reactExports.useState(null);
   const [fromTaskPreview] = reactExports.useState(() => sessionStorage.getItem("studyAreaFromTaskPreview") === "true");
   const [expandedExplanations, setExpandedExplanations] = reactExports.useState(/* @__PURE__ */ new Set());
   const formatTime = (seconds) => {
@@ -19449,7 +19448,7 @@ const Quiz = ({ questionId, onBack }) => {
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "quiz-content", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "quiz-center", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "html-preview", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "HTML Editor / Preview" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "HTML Editor " }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "code-display", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           "textarea",
           {
@@ -19481,73 +19480,41 @@ const Quiz = ({ questionId, onBack }) => {
           fromTaskPreview ? "Task Preview" : "Questions"
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "blanks-section", children: [
-        fullscreenCard === "your" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "fullscreen-overlay", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "fullscreen-card", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "fullscreen-close", onClick: () => setFullscreenCard(null), children: "✕ Close" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "fullscreen-content", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "blanks-section", children: checked && !submitted ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "output-comparison", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "output-box", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "output-header", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Your Output" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "output-content", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
             "iframe",
             {
               srcDoc: userCode,
               title: "Your Output",
-              style: { width: "100%", height: "auto", border: "none", borderRadius: "4px" },
+              style: { width: "100%", height: "200px", border: "none", borderRadius: "4px" },
               sandbox: "allow-same-origin allow-scripts"
             }
           ) })
-        ] }) }),
-        fullscreenCard === "expected" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "fullscreen-overlay", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "fullscreen-card", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "fullscreen-close", onClick: () => setFullscreenCard(null), children: "✕ Close" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "fullscreen-content", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "output-box", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "output-header", children: /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Expected Output" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "output-content", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
             "iframe",
             {
               srcDoc: generateHtmlOutput(question.htmlContent, {}),
               title: "Expected Output",
-              style: { width: "100%", height: "auto", border: "none", borderRadius: "4px" },
+              style: { width: "100%", height: "200px", border: "none", borderRadius: "4px" },
               sandbox: "allow-same-origin allow-scripts"
             }
           ) })
-        ] }) }),
-        checked && !submitted ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "output-comparison", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "output-box", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "output-header", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Your Output" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "fullscreen-btn", onClick: () => setFullscreenCard("your"), title: "Fullscreen", children: "⛶" })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "output-content", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "iframe",
-              {
-                srcDoc: userCode,
-                title: "Your Output",
-                style: { width: "100%", height: "200px", border: "none", borderRadius: "4px" },
-                sandbox: "allow-same-origin allow-scripts"
-              }
-            ) })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "output-box", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "output-header", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Expected Output" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "fullscreen-btn", onClick: () => setFullscreenCard("expected"), title: "Fullscreen", children: "⛶" })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "output-content", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "iframe",
-              {
-                srcDoc: generateHtmlOutput(question.htmlContent, {}),
-                title: "Expected Output",
-                style: { width: "100%", height: "200px", border: "none", borderRadius: "4px" },
-                sandbox: "allow-same-origin allow-scripts"
-              }
-            ) })
-          ] })
-        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "Instructions" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-            "Please type the complete HTML code above, then click ",
-            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Check" }),
-            " or ",
-            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Submit" }),
-            "."
-          ] })
         ] })
-      ] }),
+      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "Instructions" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          "Please type the complete HTML code above, then click ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Check" }),
+          " or ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Submit" }),
+          "."
+        ] })
+      ] }) }),
       submitted && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "result-box", children: [
         score === 100 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "completion-banner success", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "banner-icon", children: "🎉" }),

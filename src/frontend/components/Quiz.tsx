@@ -134,7 +134,6 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
   const [question, setQuestion] = useState<QuestionData | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAlreadyCompleted, setIsAlreadyCompleted] = useState(false);
-  const [fullscreenCard, setFullscreenCard] = useState<'your' | 'expected' | null>(null);
   const [fromTaskPreview] = useState(() => sessionStorage.getItem('studyAreaFromTaskPreview') === 'true');
   const [expandedExplanations, setExpandedExplanations] = useState<Set<string>>(new Set());
   // hint state removed per request
@@ -384,7 +383,7 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
       <div className="quiz-content">
         <div className="quiz-center">
           <div className="html-preview">
-            <h2>HTML Editor / Preview</h2>
+            <h2>HTML Editor </h2>
             <div className="code-display">
               <textarea
                 className="code-editor"
@@ -418,45 +417,12 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
           </div>
 
           <div className="blanks-section">
-            {/* always render overlays if user requested fullscreen */}
-            {fullscreenCard === 'your' && (
-              <div className="fullscreen-overlay">
-                <div className="fullscreen-card">
-                  <button className="fullscreen-close" onClick={() => setFullscreenCard(null)}>✕ Close</button>
-                  <div className="fullscreen-content">
-                    <iframe
-                      srcDoc={userCode}
-                      title="Your Output"
-                      style={{ width: '100%', height: 'auto', border: 'none', borderRadius: '4px' }}
-                      sandbox="allow-same-origin allow-scripts"
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {fullscreenCard === 'expected' && (
-              <div className="fullscreen-overlay">
-                <div className="fullscreen-card">
-                  <button className="fullscreen-close" onClick={() => setFullscreenCard(null)}>✕ Close</button>
-                  <div className="fullscreen-content">
-                    <iframe
-                      srcDoc={generateHtmlOutput(question.htmlContent, {})}
-                      title="Expected Output"
-                      style={{ width: '100%', height: 'auto', border: 'none', borderRadius: '4px' }}
-                      sandbox="allow-same-origin allow-scripts"
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
 
             {checked && !submitted ? (
               <div className="output-comparison">
                 <div className="output-box">
                   <div className="output-header">
                     <h3>Your Output</h3>
-                    <button className="fullscreen-btn" onClick={() => setFullscreenCard('your')} title="Fullscreen">⛶</button>
                   </div>
                   <div className="output-content">
                     <iframe
@@ -470,7 +436,6 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
                 <div className="output-box">
                   <div className="output-header">
                     <h3>Expected Output</h3>
-                    <button className="fullscreen-btn" onClick={() => setFullscreenCard('expected')} title="Fullscreen">⛶</button>
                   </div>
                   <div className="output-content">
                     <iframe
