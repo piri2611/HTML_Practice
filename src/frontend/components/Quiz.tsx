@@ -364,7 +364,6 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
           </div>
         </div>
         <div className="header-right">
-          <span className="user-info">Welcome, {user?.name}!</span>
           <button className="logout-btn" onClick={logout}>Logout</button>
         </div>
       </header>

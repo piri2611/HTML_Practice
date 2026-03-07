@@ -19549,14 +19549,7 @@ const Quiz = ({ questionId, onBack }) => {
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "timer-label", children: "Time Remaining:" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "timer-value", children: formatTime(timeRemaining) })
       ] }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "header-right", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "user-info", children: [
-          "Welcome, ",
-          user?.name,
-          "!"
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "logout-btn", onClick: logout, children: "Logout" })
-      ] })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "header-right", children: /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "logout-btn", onClick: logout, children: "Logout" }) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "quiz-content", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "quiz-center", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "html-preview", children: [
