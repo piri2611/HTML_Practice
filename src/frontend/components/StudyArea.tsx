@@ -22,7 +22,8 @@ export const StudyArea = ({ onBack, onSelectQuestion, onViewReferences, onViewTa
     return saved ? parseInt(saved) : null;
   });
   const [showingHtmlQuiz, setShowingHtmlQuiz] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  // sidebar is initially closed on narrow screens; toggled via hamburger
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const tasksRef = React.useRef<HTMLDivElement>(null);
   
   // Load questions from database
@@ -1100,7 +1101,7 @@ worker.onmessage = function(event) {
             </div>
           </div>
           <div className="nav-right">
-            <span className="user-greeting">Hi, {user?.name}!</span>
+            
             <button className="logout-btn" onClick={logout}>Logout</button>
           </div>
         </nav>
@@ -1108,7 +1109,7 @@ worker.onmessage = function(event) {
 
       <div className="study-content">
         <div className="study-layout">
-          <aside className={`study-sidebar fixed left-0 top-0 h-full z-50 w-[280px] sm:w-[300px] bg-[#020617]/80 backdrop-blur-xl border-r border-white/10 rounded-r-2xl shadow-[0_0_40px_rgba(59,130,246,0.15)] p-6 space-y-4 transition-transform duration-300 overflow-y-auto relative ${sidebarOpen ? 'translate-x-0' : 'translate-x-[-100%]'}`} aria-label="HTML topics">
+          <aside className={`study-sidebar fixed left-0 top-0 h-full z-50 w-[280px] sm:w-[300px] bg-[#020617]/80 backdrop-blur-xl border-r border-white/10 rounded-r-2xl shadow-[0_0_40px_rgba(59,130,246,0.15)] p-6 space-y-4 transition-transform duration-300 overflow-y-auto relative ${sidebarOpen ? 'sidebar-open translate-x-0' : 'translate-x-[-100%]'}`} aria-label="HTML topics">
             <button 
               className="sidebar-close-btn absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-md bg-white/10 text-white hover:bg-white/20 transition"
               onClick={() => setSidebarOpen(false)}

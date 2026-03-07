@@ -19770,7 +19770,7 @@ const StudyArea = ({ onBack, onSelectQuestion, onViewReferences, onViewTags }) =
     return saved ? parseInt(saved) : null;
   });
   const [showingHtmlQuiz, setShowingHtmlQuiz] = reactExports.useState(false);
-  const [sidebarOpen, setSidebarOpen] = reactExports.useState(true);
+  const [sidebarOpen, setSidebarOpen] = reactExports.useState(false);
   const tasksRef = React.useRef(null);
   reactExports.useEffect(() => {
     const loadQuestions = async () => {
@@ -20821,17 +20821,10 @@ worker.onmessage = function(event) {
           /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "nav-item", onClick: onViewTags, children: "Tags" })
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "nav-right", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "user-greeting", children: [
-          "Hi, ",
-          user?.name,
-          "!"
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "logout-btn", onClick: logout, children: "Logout" })
-      ] })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "nav-right", children: /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "logout-btn", onClick: logout, children: "Logout" }) })
     ] }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "study-content", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "study-layout", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("aside", { className: `study-sidebar fixed left-0 top-0 h-full z-50 w-[280px] sm:w-[300px] bg-[#020617]/80 backdrop-blur-xl border-r border-white/10 rounded-r-2xl shadow-[0_0_40px_rgba(59,130,246,0.15)] p-6 space-y-4 transition-transform duration-300 overflow-y-auto relative ${sidebarOpen ? "translate-x-0" : "translate-x-[-100%]"}`, "aria-label": "HTML topics", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("aside", { className: `study-sidebar fixed left-0 top-0 h-full z-50 w-[280px] sm:w-[300px] bg-[#020617]/80 backdrop-blur-xl border-r border-white/10 rounded-r-2xl shadow-[0_0_40px_rgba(59,130,246,0.15)] p-6 space-y-4 transition-transform duration-300 overflow-y-auto relative ${sidebarOpen ? "sidebar-open translate-x-0" : "translate-x-[-100%]"}`, "aria-label": "HTML topics", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",
           {
@@ -21025,15 +21018,7 @@ worker.onmessage = function(event) {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "study-section", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "HTML Code to Complete" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "textarea",
-            {
-              className: "study-code",
-              value: selectedTask.htmlContent,
-              readOnly: true,
-              rows: 12
-            }
-          )
+          /* @__PURE__ */ jsxRuntimeExports.jsx("pre", { className: "study-code", children: /* @__PURE__ */ jsxRuntimeExports.jsx("code", { children: selectedTask.htmlContent }) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "lesson-navigation", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(

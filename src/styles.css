@@ -1080,9 +1080,16 @@ a.button:focus {
   display: flex;
   align-items: center;
   gap: 20px;
+  padding-left: 6px;
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+
 }
 
 .nav-brand {
+  margin-right: 2px; /* small space from left edge */
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -1166,6 +1173,11 @@ a.button:focus {
   white-space: nowrap;
   flex-shrink: 0;
   margin-left: auto;
+  /* pin to right edge */
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .user-greeting {
@@ -4179,6 +4191,7 @@ a.button:focus {
 
   .mobile-menu-toggle {
     padding: 4px;
+    order: -1; /* move hamburger before brand on small screens */
   }
 
   .mobile-menu-toggle svg {
