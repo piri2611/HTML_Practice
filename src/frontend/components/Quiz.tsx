@@ -137,6 +137,7 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
   const [fromTaskPreview] = useState(() => sessionStorage.getItem('studyAreaFromTaskPreview') === 'true');
   const [expandedExplanations, setExpandedExplanations] = useState<Set<string>>(new Set());
   // hint state removed per request
+  // fullscreen state removed earlier
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -198,7 +199,6 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
 
     setScore(percentage);
     setSubmitted(true);
-    setFullscreenCard('expected');
 
     // Save to user_progress table
     if (user?.id && user?.email) {
@@ -428,7 +428,7 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
                     <iframe
                       srcDoc={userCode}
                       title="Your Output"
-                      style={{ width: '100%', height: '200px', border: 'none', borderRadius: '4px' }}
+                      style={{ width: '100%', height: '250px', border: 'none', borderRadius: '4px' }}
                       sandbox="allow-same-origin allow-scripts"
                     />
                   </div>
@@ -441,17 +441,17 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
                     <iframe
                       srcDoc={generateHtmlOutput(question.htmlContent, {})}
                       title="Expected Output"
-                      style={{ width: '100%', height: '200px', border: 'none', borderRadius: '4px' }}
+                      style={{ width: '100%', height: '250px', border: 'none', borderRadius: '4px' }}
                       sandbox="allow-same-origin allow-scripts"
                     />
                   </div>
                 </div>
               </div>
             ) : (
-              <>
+              <div className="instructions-box">
                 <h2>Instructions</h2>
                 <p>Please type the complete HTML code above, then click <strong>Check</strong> or <strong>Submit</strong>.</p>
-              </>
+              </div>
             )}
           </div>
 

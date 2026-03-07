@@ -51,18 +51,28 @@ body::before {
   height: 6px;
 }
 
+/* WebKit browsers (Chrome, Edge, Safari) */
 ::-webkit-scrollbar-track {
   background: #0F172A;
+  border: 1px solid #3b82f6; /* blue border for contrast */
 }
 
 ::-webkit-scrollbar-thumb {
   background: #334155;
   border-radius: 3px;
+  border: 1px solid #3b82f6; /* blue outline to match theme */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #3b82f6; /* turn thumb blue on hover */
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #0F172A; /* thumb blue, track dark */
+}
+
 
 /* ===== LIQUID GLASS EFFECT WITH NEON LIGHT ===== */
 .liquid-glass {
@@ -1969,6 +1979,12 @@ a.button:focus {
     max-width: none; /* allow expand beyond 900 */
   }
 }
+@media (min-width: 1024px) {
+  .instructions-box {
+    width: 44vw; /* 70% of viewport width */
+    max-width: none; /* allow expand beyond 900 */
+  }
+}
 
 .html-preview h2,
 .blanks-section h2 {
@@ -2008,16 +2024,15 @@ a.button:focus {
 }
 
 .show-answer-btn {
-  background-color: #444;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  margin-left: 6px;
-  border-radius: 4px;
-  cursor: pointer;
+  /* match base button appearance (glass/neon style) */
+  background: rgba(177, 220, 104, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+  /* padding and size handled by .button-group button rule */
 }
 .show-answer-btn:hover {
-  background-color: #666;
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.2);
 }
 .code-display pre {
   margin: 0;
@@ -2177,6 +2192,24 @@ a.button:focus {
   justify-content: flex-end;
 }
 
+/* ensure buttons in the quiz toolbar share the same dimensions */
+.button-group button {
+  padding: 5px 6px; /* slightly smaller */
+  min-width: 100px; /* reduce overall width */
+  font-size: 13px; /* smaller text */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* reset individual widths so they don't conflict */
+.check-btn, .submit-btn {
+  width: auto;
+}
+
 .check-btn {
   padding: 8px 16px;
   width: 100px;
@@ -2211,7 +2244,7 @@ a.button:focus {
 }
 
 .clear-btn {
-  padding: 8px 16px;
+  padding: 5px 6px;
   background: rgba(255,255,255,0.1);
   color: #fff;
   border: 1px solid rgba(255,255,255,0.2);
@@ -2243,12 +2276,12 @@ a.button:focus {
 }
 
 .submit-btn {
-  padding: 8px 16px;
+  padding: 5px 6px;
   width: 140px;
   background: linear-gradient(135deg, rgba(52, 211, 153, 0.25) 0%, rgba(16, 185, 129, 0.25) 100%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: #34d399;
+  color: #7e5be0;
   border: 1px solid rgba(52, 211, 153, 0.4);
   border-radius: 14px;
   font-size: 15px;
@@ -3734,7 +3767,7 @@ a.button:focus {
 .output-box {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 5px;
   color: #f8fafc; /* make text inside visible */
 }
 

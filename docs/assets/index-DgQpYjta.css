@@ -166,15 +166,23 @@ body::before {
   width: 6px;
   height: 6px;
 }
+/* WebKit browsers (Chrome, Edge, Safari) */
 ::-webkit-scrollbar-track {
   background: #0F172A;
+  border: 1px solid #3b82f6; /* blue border for contrast */
 }
 ::-webkit-scrollbar-thumb {
   background: #334155;
   border-radius: 3px;
+  border: 1px solid #3b82f6; /* blue outline to match theme */
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #3b82f6; /* turn thumb blue on hover */
+}
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #0F172A; /* thumb blue, track dark */
 }
 /* ===== LIQUID GLASS EFFECT WITH NEON LIGHT ===== */
 .liquid-glass {
@@ -1912,16 +1920,15 @@ a.button:focus {
   caret-color: #ffffff;
 }
 .show-answer-btn {
-  background-color: #444;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  margin-left: 6px;
-  border-radius: 4px;
-  cursor: pointer;
+  /* match base button appearance (glass/neon style) */
+  background: rgba(177, 220, 104, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+  /* padding and size handled by .button-group button rule */
 }
 .show-answer-btn:hover {
-  background-color: #666;
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.2);
 }
 .code-display pre {
   margin: 0;
@@ -1959,56 +1966,6 @@ a.button:focus {
   font-weight: 600;
   color: #94a3b8;
   font-size: 14px;
-}
-.hint-btn {
-  padding: 6px 14px;
-  background: rgba(251, 191, 36, 0.15);
-  color: #fbbf24;
-  border: 1px solid rgba(251, 191, 36, 0.3);
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
-  transition: all 0.3s;
-  white-space: nowrap;
-}
-.hint-btn:hover {
-  background: rgba(251, 191, 36, 0.25);
-  transform: translateY(-1px);
-}
-.hints-container {
-  background: rgba(251, 191, 36, 0.1);
-  border: 1px solid rgba(251, 191, 36, 0.2);
-  border-radius: 8px;
-  padding: 14px;
-  margin-bottom: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.hint-item {
-  color: #fbbf24;
-  font-size: 13px;
-  padding: 8px 10px;
-  background: rgba(0, 0, 0, 0.2);
-  border-left: 3px solid #fbbf24;
-  border-radius: 4px;
-  line-height: 1.5;
-}
-.hint-btn-small {
-  align-self: flex-start;
-  padding: 6px 14px;
-  background: transparent;
-  color: #fbbf24;
-  border: 1px solid rgba(251, 191, 36, 0.3);
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
-  transition: all 0.3s;
-}
-.hint-btn-small:hover {
-  background: rgba(251, 191, 36, 0.15);
 }
 .blank-input-group input {
   padding: 12px;
@@ -2060,6 +2017,22 @@ a.button:focus {
   gap: 12px;
   justify-content: flex-end;
 }
+/* ensure buttons in the quiz toolbar share the same dimensions */
+.button-group button {
+  padding: 5px 6px; /* slightly smaller */
+  min-width: 100px; /* reduce overall width */
+  font-size: 13px; /* smaller text */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+/* reset individual widths so they don't conflict */
+.check-btn, .submit-btn {
+  width: auto;
+}
 .check-btn {
   padding: 8px 16px;
   width: 100px;
@@ -2092,7 +2065,7 @@ a.button:focus {
   transition: left 0.5s ease;
 }
 .clear-btn {
-  padding: 8px 16px;
+  padding: 5px 6px;
   background: rgba(255,255,255,0.1);
   color: #fff;
   border: 1px solid rgba(255,255,255,0.2);
@@ -2120,13 +2093,13 @@ a.button:focus {
   left: 100%;
 }
 .submit-btn {
-  padding: 8px 16px;
+  padding: 5px 6px;
   width: 140px;
   background: linear-gradient(135deg, rgba(52, 211, 153, 0.25) 0%, rgba(16, 185, 129, 0.25) 100%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: #34d399;
-  border: 1px solid rgba(52, 211, 153, 0.4);
+  color: #7e5be0;
+  border: 1px solid rgba(226, 79, 211, 0.4);
   border-radius: 14px;
   font-size: 15px;
   font-weight: 600;
@@ -3413,7 +3386,7 @@ a.button:focus {
 .output-box {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 5px;
   color: #f8fafc; /* make text inside visible */
 }
 .output-box,
@@ -3468,57 +3441,6 @@ a.button:focus {
   padding: 4px; /* less padding to allow wider card */
   backdrop-filter: blur(8px);
 }
-.fullscreen-card {
-  background: #0f172a;
-  border-radius: 16px;
-  /* make the card slightly narrower than the viewport so padding doesn\'t shrink it */
-  width: auto;
-  max-width: 98vw; /* nearly full viewport width */
-  max-height: none; /* allow height to grow with content */
-  overflow: visible; /* avoid scrollbars whenever possible */
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.fullscreen-card,
-.fullscreen-card * {
-  color: #ffffff !important;
-}
-.fullscreen-close {
-  align-self: flex-end;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  margin: 14px;
-  transition: all 0.3s;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-}
-.fullscreen-close:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
-}
-.fullscreen-content {
-  /* do not force flex sizing; let content determine height */
-  flex: none;
-  overflow: visible;
-  display: flex;
-  flex-direction: column;
-  padding: 0 14px 14px 14px;
-}
-.output-content {
-  background: #0f172a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-}
-/* override fullscreen styles to simple content‑sized modal */
-.fullscreen-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; }
-/* HTML tags reference overlay/modal */
 .tags-reference-overlay {
   position: fixed;
   inset: 0;
@@ -3579,11 +3501,6 @@ a.button:focus {
     padding: 6px;
   }
 }
-.fullscreen-card { background: #0f172a; color: #fff; padding: 24px; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); width: auto; height: auto; }
-.fullscreen-card, .fullscreen-card * { color: #fff !important; }
-.fullscreen-close { align-self: flex-end; padding: 10px 20px; background: linear-gradient(135deg,#ef4444 0%,#dc2626 100%); color:white; border:none; border-radius:8px; cursor:pointer; font-size:14px; font-weight:600; margin:14px; transition:all 0.3s; box-shadow:0 4px 12px rgba(239,68,68,0.3); }
-.fullscreen-close:hover { transform:scale(1.05); box-shadow:0 6px 16px rgba(239,68,68,0.4); }
-.fullscreen-content { padding:0; }
 .result-buttons {
   display: flex;
   gap: 14px;
