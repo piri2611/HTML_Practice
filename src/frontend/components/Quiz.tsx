@@ -364,7 +364,7 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
     <div className="quiz-container">
       <header className="quiz-header">
         <div className="header-left">
-          <h1>Quiz Practice - Q{question.id}</h1>
+          <h1>HTML Practice - Q{question.id-30}</h1>
         </div>
         <div className="header-center">
           <div className="timer">
