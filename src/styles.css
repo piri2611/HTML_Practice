@@ -1138,8 +1138,11 @@ a.button:focus {
   display: flex;
   gap: 80px;
   align-items: center;
+  
   flex-shrink: 0;
 
+  /* increase nav height slightly on desktop to allow comfortable click area */
+  height: 80px;
 }
 
 .mobile-menu-toggle {
@@ -1170,6 +1173,7 @@ a.button:focus {
   height: 70px;
   display: flex;
   align-items: center;
+  justify-content: center; /* center text horizontally */
   white-space: nowrap;
   position: relative;
   box-shadow: none !important;

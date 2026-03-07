@@ -1135,8 +1135,11 @@ a.button:focus {
   display: flex;
   gap: 80px;
   align-items: center;
+  
   flex-shrink: 0;
 
+  /* increase nav height slightly on desktop to allow comfortable click area */
+  height: 80px;
 }
 .mobile-menu-toggle {
   display: none;
@@ -1164,6 +1167,7 @@ a.button:focus {
   height: 70px;
   display: flex;
   align-items: center;
+  justify-content: center; /* center text horizontally */
   white-space: nowrap;
   position: relative;
   box-shadow: none !important;
@@ -1885,6 +1889,12 @@ a.button:focus {
     max-width: none; /* allow expand beyond 900 */
   }
 }
+@media (min-width: 1024px) {
+  .instructions-box {
+    width: 44vw; /* 70% of viewport width */
+    max-width: none; /* allow expand beyond 900 */
+  }
+}
 .html-preview h2,
 .blanks-section h2 {
   margin-top: 0;
@@ -1966,6 +1976,56 @@ a.button:focus {
   font-weight: 600;
   color: #94a3b8;
   font-size: 14px;
+}
+.hint-btn {
+  padding: 6px 14px;
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.hint-btn:hover {
+  background: rgba(251, 191, 36, 0.25);
+  transform: translateY(-1px);
+}
+.hints-container {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hint-item {
+  color: #fbbf24;
+  font-size: 13px;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 3px solid #fbbf24;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+.hint-btn-small {
+  align-self: flex-start;
+  padding: 6px 14px;
+  background: transparent;
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.hint-btn-small:hover {
+  background: rgba(251, 191, 36, 0.15);
 }
 .blank-input-group input {
   padding: 12px;
@@ -2099,7 +2159,7 @@ a.button:focus {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: #7e5be0;
-  border: 1px solid rgba(226, 79, 211, 0.4);
+  border: 1px solid rgba(52, 211, 153, 0.4);
   border-radius: 14px;
   font-size: 15px;
   font-weight: 600;
@@ -3441,6 +3501,57 @@ a.button:focus {
   padding: 4px; /* less padding to allow wider card */
   backdrop-filter: blur(8px);
 }
+.fullscreen-card {
+  background: #0f172a;
+  border-radius: 16px;
+  /* make the card slightly narrower than the viewport so padding doesn\'t shrink it */
+  width: auto;
+  max-width: 98vw; /* nearly full viewport width */
+  max-height: none; /* allow height to grow with content */
+  overflow: visible; /* avoid scrollbars whenever possible */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.fullscreen-card,
+.fullscreen-card * {
+  color: #ffffff !important;
+}
+.fullscreen-close {
+  align-self: flex-end;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 14px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+.fullscreen-close:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+.fullscreen-content {
+  /* do not force flex sizing; let content determine height */
+  flex: none;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  padding: 0 14px 14px 14px;
+}
+.output-content {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+/* override fullscreen styles to simple content‑sized modal */
+.fullscreen-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; }
+/* HTML tags reference overlay/modal */
 .tags-reference-overlay {
   position: fixed;
   inset: 0;
@@ -3501,6 +3612,11 @@ a.button:focus {
     padding: 6px;
   }
 }
+.fullscreen-card { background: #0f172a; color: #fff; padding: 24px; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); width: auto; height: auto; }
+.fullscreen-card, .fullscreen-card * { color: #fff !important; }
+.fullscreen-close { align-self: flex-end; padding: 10px 20px; background: linear-gradient(135deg,#ef4444 0%,#dc2626 100%); color:white; border:none; border-radius:8px; cursor:pointer; font-size:14px; font-weight:600; margin:14px; transition:all 0.3s; box-shadow:0 4px 12px rgba(239,68,68,0.3); }
+.fullscreen-close:hover { transform:scale(1.05); box-shadow:0 6px 16px rgba(239,68,68,0.4); }
+.fullscreen-content { padding:0; }
 .result-buttons {
   display: flex;
   gap: 14px;

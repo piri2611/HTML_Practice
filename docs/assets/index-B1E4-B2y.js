@@ -19504,7 +19504,7 @@ const Quiz = ({ questionId, onBack }) => {
             }
           ) })
         ] })
-      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "instructions-box", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "Instructions" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
           "Please type the complete HTML code above, then click ",
