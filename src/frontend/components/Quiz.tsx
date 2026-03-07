@@ -407,7 +407,7 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
                       srcDoc={userCode}
                       title="Your Output"
                       style={{ width: '100%', height: '100%', border: 'none', borderRadius: '4px' }}
-                      sandbox="allow-same-origin"
+                      sandbox="allow-same-origin allow-scripts"
                     />
                   </div>
                 </div>
@@ -423,7 +423,7 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
                       srcDoc={generateHtmlOutput(question.htmlContent, {})}
                       title="Expected Output"
                       style={{ width: '100%', height: '100%', border: 'none', borderRadius: '4px' }}
-                      sandbox="allow-same-origin"
+                      sandbox="allow-same-origin allow-scripts"
                     />
                   </div>
                 </div>
@@ -442,7 +442,7 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
                       srcDoc={userCode}
                       title="Your Output"
                       style={{ width: '100%', height: '200px', border: 'none', borderRadius: '4px' }}
-                      sandbox="allow-same-origin"
+                      sandbox="allow-same-origin allow-scripts"
                     />
                   </div>
                 </div>
@@ -456,7 +456,7 @@ export const Quiz = ({ questionId, onBack }: QuizProps) => {
                       srcDoc={generateHtmlOutput(question.htmlContent, {})}
                       title="Expected Output"
                       style={{ width: '100%', height: '200px', border: 'none', borderRadius: '4px' }}
-                      sandbox="allow-same-origin"
+                      sandbox="allow-same-origin allow-scripts"
                     />
                   </div>
                 </div>
