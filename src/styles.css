@@ -3608,6 +3608,12 @@ a.button:focus {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  color: #f8fafc; /* make text inside visible */
+}
+
+.output-box,
+.output-box * {
+  color: #f8fafc !important;
 }
 
 .output-box h3 {
@@ -3654,25 +3660,33 @@ a.button:focus {
   left: 0;
   right: 0;
   bottom: 0;
+
   background: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  padding: 24px;
+  padding: 8px; /* give a bit more breathing room around card */
   backdrop-filter: blur(8px);
 }
 
 .fullscreen-card {
   background: #0f172a;
   border-radius: 16px;
-  width: 100vw;
-  max-width: none;
-  height: 100vh;
+  /* make the card slightly narrower than the viewport so padding doesn\'t shrink it */
+  width: auto;
+  max-width: 90vw; /* cap width on very large screens */
+  max-height: 90vh;
+  overflow: auto; /* scroll if content grows too tall */
   display: flex;
   flex-direction: column;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fullscreen-card,
+.fullscreen-card * {
+  color: #ffffff !important;
 }
 
 .fullscreen-close {
@@ -3708,6 +3722,7 @@ a.button:focus {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   overflow: hidden;
+  color: #f8fafc; /* also enforce here */
 }
 
 .result-buttons {
@@ -4309,7 +4324,9 @@ a.button:focus {
   }
 
   .fullscreen-card {
-    max-width: 100vw;
+    /* keep the 90vw cap from the base rule instead of allowing full viewport */
+    max-width: 90vw;
     padding: 8px;
+    color: #f8fafc;
   }
 }
